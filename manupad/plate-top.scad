@@ -4,16 +4,7 @@ rounding_tip = 2;
 
 module plate_top() {
     key_grid();
-    translate([0, 0, rounding_tip])
-        minkowski() {
-            difference() {
-                cube([case_width, case_height, wall_height]);
-                translate([plate_thickness, plate_thickness, 0]) {
-                    cube([case_width - (2 * plate_thickness), case_height - (2 * plate_thickness), wall_height]);
-                }
-            }
-            sphere(2);
-        }
+    key_case();
 }
 
 module key_grid() {
@@ -22,6 +13,20 @@ module key_grid() {
             for (column = [0: columns - 1]) {
                 key_hole(row, column);
             }
+        }
+    }
+}
+
+module key_case() {
+    translate([0, 0, rounding_tip]) {
+        minkowski() {
+            difference() {
+                cube([case_width, case_height, wall_height]);
+                translate([plate_thickness, plate_thickness, 0]) {
+                    cube([case_width - (2 * plate_thickness), case_height - (2 * plate_thickness), wall_height]);
+                }
+            }
+            sphere(2);
         }
     }
 }
