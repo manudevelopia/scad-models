@@ -1,8 +1,8 @@
+include <../common/keyhole.scad>
+
 rows = 4;
 columns = 12;
 plate_thickness = 2;
-
-plate_bottom();
 
 module plate_bottom() {
     plate_width = (columns * switch_plate);
