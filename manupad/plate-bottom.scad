@@ -1,5 +1,8 @@
 include <../common/keyhole.scad>
+include <plate.scad>
 
 module plate_bottom() {
-    cube([case_width, case_height, plate_thickness]);
+    linear_extrude(plate_thickness) {
+        plate();
+    }
 }
