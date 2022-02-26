@@ -13,7 +13,7 @@ case_height = rows * switch_plate;
 
 module case() {
     plate_top();
-    plate_bottom();
+//    plate_bottom();
 }
 
 case();

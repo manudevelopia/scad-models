@@ -12,9 +12,17 @@ module plate_top() {
 module rotatory_encoder() {
     translate([case_width, 0, wall_height - plate_thickness])
         linear_extrude(plate_thickness) {
-            translate([case_height / 2, case_height / 2])
-                circle(case_height / 2);
-            square([case_height / 2, case_height]);
+            difference() {
+                union() {
+                    translate([case_height / 2, case_height / 2]) {
+                        circle(case_height / 2);
+                    }
+                    square([case_height / 2, case_height]);
+                }
+                translate([case_height / 2, case_height / 2]) {
+                    circle(7 / 2);
+                }
+            }
         }
 }
 
@@ -39,6 +47,7 @@ module key_case() {
             }
         }
     }
+
 
     translate([0, 0, 5]) {
 
