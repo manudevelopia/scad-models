@@ -10,14 +10,15 @@ module plate_top() {
 }
 
 module rotatory_encoder() {
-    translate([case_width, 0, wall_height - plate_thickness])
+    translate([case_width + rotatory_space_with_keyholes, 0, wall_height - plate_thickness])
         linear_extrude(plate_thickness) {
             difference() {
                 union() {
                     translate([case_height / 2, case_height / 2]) {
                         circle(case_height / 2);
                     }
-                    square([case_height / 2, case_height]);
+                    translate([- rotatory_space_with_keyholes, 0])
+                        square([case_height / 2 + rotatory_space_with_keyholes, case_height]);
                 }
                 translate([case_height / 2, case_height / 2]) {
                     circle(7 / 2);
