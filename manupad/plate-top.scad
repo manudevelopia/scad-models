@@ -56,14 +56,13 @@ module nut_stands() {
     translate([plate_thickness / 2, case_height - plate_thickness / 2, plate_thickness]) nut_support();
     translate([case_width + plate_thickness / 2, plate_thickness / 2, plate_thickness]) nut_support();
     translate([case_width + plate_thickness / 2, case_height - plate_thickness / 2, plate_thickness]) nut_support();
-    translate([case_width + plate_thickness / 2 + case_height + rotatory_space_with_keyholes/2, (case_height - plate_thickness) / 2, plate_thickness]) nut_support();
+    translate([case_width + plate_thickness / 2 + case_height + rotatory_space_with_keyholes / 2, (case_height -
+        plate_thickness) / 2, plate_thickness]) nut_support();
 }
 
 module nut_support() {
     difference() {
         cylinder(d = 4, h = wall_height / 2 - plate_thickness);
-        translate([0, 0, 0]) {
-            cylinder(d = 4 / 3, h = wall_height / 2 - plate_thickness);
-        }
+        cylinder(d = 4 / 3, h = wall_height / 2 - plate_thickness);
     }
 }
