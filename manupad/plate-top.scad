@@ -48,31 +48,22 @@ module key_case() {
             }
         }
     }
+    nut_stands();
+}
 
+module nut_stands() {
+    translate([plate_thickness / 2, plate_thickness / 2, plate_thickness]) nut_support();
+    translate([plate_thickness / 2, case_height - plate_thickness / 2, plate_thickness]) nut_support();
+    translate([case_width + plate_thickness / 2, plate_thickness / 2, plate_thickness]) nut_support();
+    translate([case_width + plate_thickness / 2, case_height - plate_thickness / 2, plate_thickness]) nut_support();
+    translate([case_width + plate_thickness / 2 + case_height + rotatory_space_with_keyholes/2, (case_height - plate_thickness) / 2, plate_thickness]) nut_support();
+}
 
-    translate([0, 0, 5]) {
-
-        //        //        minkowski() {
-        ////            offset(1)
-        //                {
-        //                linear_extrude(wall_height) plate();
-        //            }
-        //            linear_extrude(wall_height) plate();
-        //        }
-        //            union() {
-        //                difference() {
-        //                    cube([case_width, case_height, wall_height]);
-        //                    translate([plate_thickness, plate_thickness, 0]) {
-        //                        cube([case_width - (2 * plate_thickness), case_height - (2 * plate_thickness), wall_height]);
-        //                    }
-        //                }
-        //                translate([case_width + case_height / 2, case_height / 2, 0]) {
-        //                    linear_extrude(wall_height) {
-        //                        circle(case_height / 2);
-        //                    }
-        //                }
-        //            }
-        //            sphere(2);
-        //        }
+module nut_support() {
+    difference() {
+        cylinder(d = 4, h = wall_height / 2 - plate_thickness);
+        translate([0, 0, 0]) {
+            cylinder(d = 4 / 3, h = wall_height / 2 - plate_thickness);
+        }
     }
 }
