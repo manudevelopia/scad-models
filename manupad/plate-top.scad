@@ -38,15 +38,18 @@ module key_grid() {
 }
 
 module key_case() {
-    linear_extrude(wall_height) {
-        difference() {
-            offset(delta = plate_thickness) {
-                plate();
-            }
-            offset(delta = 0) {
-                plate();
+    difference() {
+        linear_extrude(wall_height) {
+            difference() {
+                offset(delta = plate_thickness) {
+                    plate();
+                }
+                offset(delta = 0) {
+                    plate();
+                }
             }
         }
+        microusb_connectot_hole();
     }
     nut_stands();
 }
@@ -65,4 +68,11 @@ module nut_support() {
         cylinder(d = 4, h = wall_height / 2 - plate_thickness);
         cylinder(d = 4 / 3, h = wall_height / 2 - plate_thickness);
     }
+}
+
+module microusb_connectot_hole() {
+    usb_x = 7;
+    usb_y = 2;
+    translate([- plate_thickness, (case_height - usb_x) / 2, 4])
+        color("Red", 1) cube([usb_y, usb_x, plate_thickness]);
 }
