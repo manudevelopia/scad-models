@@ -31,7 +31,7 @@ module key_grid() {
     translate([0, 0, wall_height - (plate_thickness / 2)]) {
         for (row = [0: rows - 1]) {
             for (column = [0: columns - 1]) {
-                key_hole(row, column);
+                key_hole(row, column, plate_thickness);
             }
         }
     }
@@ -55,24 +55,32 @@ module key_case() {
 }
 
 module nut_stands() {
-    translate([plate_thickness / 2, plate_thickness / 2, plate_thickness]) nut_support();
-    translate([plate_thickness / 2, case_height - plate_thickness / 2, plate_thickness]) nut_support();
-    translate([case_width + plate_thickness / 2, plate_thickness / 2, plate_thickness]) nut_support();
-    translate([case_width + plate_thickness / 2, case_height - plate_thickness / 2, plate_thickness]) nut_support();
-    translate([case_width + plate_thickness / 2 + case_height + rotatory_space_with_keyholes / 2, (case_height -
-        plate_thickness) / 2, plate_thickness]) nut_support();
+    padding = nut_hole / 4;
+    translate([plate_thickness + padding / 2, plate_thickness + padding / 2, plate_thickness]) nut_support();
+    translate([case_width + plate_thickness, plate_thickness + padding / 2, plate_thickness]) nut_support();
+
+    translate([plate_thickness + padding / 2, case_height - (plate_thickness + nut_hole - 1) / 2, plate_thickness])
+        nut_support();
+    translate([case_width + plate_thickness, case_height - (plate_thickness + nut_hole - 1) / 2, plate_thickness])
+        nut_support();
+
+    translate([case_width + case_height + plate_thickness, case_height / 2, plate_thickness]) nut_support();
 }
 
 module nut_support() {
+    diameter = nut_hole * 2;
     difference() {
-        cylinder(d = 4, h = wall_height / 2 - plate_thickness);
-        cylinder(d = 4 / 3, h = wall_height / 2 - plate_thickness);
+        cylinder(d = diameter, h = wall_height / 2);
+        cylinder(d = diameter / 3, h = wall_height / 2);
     }
 }
 
 module microusb_connectot_hole() {
-    usb_x = 7;
+    usb_x = 8;
     usb_y = 2;
-    translate([- plate_thickness, (case_height - usb_x) / 2, 4])
-        color("Red", 1) cube([usb_y, usb_x, plate_thickness]);
+    translate([- plate_thickness, (case_height - usb_x ) / 2, 3.6])
+        minkowski() {
+            cube([usb_y, usb_x, 1]);
+            sphere(.8);
+        }
 }
