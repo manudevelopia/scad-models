@@ -1,15 +1,14 @@
 include <../common/keyhole.scad>
 include <plate-top.scad>
 
-$fn = 50;
-
 rows = 4;
 columns = 12;
 wall_height = 9;
+plate_thickness = 2;
 
 margin_play = 0.4;
-case_width = (columns * switch_plate) + (2 * plate_thickness) + margin_play;
-case_height = (rows * switch_plate) + (2 * plate_thickness) + margin_play;
+case_width = (columns * key_holder) + (2 * plate_thickness) + margin_play;
+case_height = (rows * key_holder) + (2 * plate_thickness) + margin_play;
 
 module case() {
     translate([- plate_thickness - margin_play / 2, - plate_thickness - margin_play / 2, - (wall_height - 1)])

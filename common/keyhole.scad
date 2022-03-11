@@ -1,4 +1,4 @@
-key_hole = 14.5;
+key_hole = 14;
 key_holder = key_hole + (2.5 * 2) ;
 
 module key_hole(row, column, plate_thickness = 2) {
