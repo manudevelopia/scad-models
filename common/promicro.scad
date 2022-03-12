@@ -28,7 +28,7 @@ module lid(enclose_lid_widht = board_width / 2) {
 module usb_hole(usb_x = 8, usb_y = 2) {
     difference() {
         cube([enclose_width, 1, usb_enclose_height * 2]);
-        translate([(enclose_width - usb_x) / 2, 0, 2])
+        translate([(enclose_width - usb_x) / 2, 0, 3.1])
             minkowski() {
                 cube([usb_x, usb_y, enclose_thickness]);
                 sphere(r = 0.9);
