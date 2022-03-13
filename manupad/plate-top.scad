@@ -76,11 +76,11 @@ module nut_support() {
 }
 
 module microusb_connectot_hole() {
-    usb_x = 8;
+    usb_x = 6.5;
     usb_y = 2;
-    translate([- plate_thickness, (case_height - usb_x ) / 2, 3.6])
+    translate([- plate_thickness, (case_height - usb_x ) / 2, 4.4])
         minkowski() {
             cube([usb_y, usb_x, 1]);
-            sphere(.8);
+            sphere(r = 0.9, $fn = 100);
         }
 }
